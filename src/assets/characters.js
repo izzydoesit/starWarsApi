@@ -1,4 +1,4 @@
-{
+const data = {
   "characters": [
     {
       "name": "Luke Skywalker",
@@ -18,3 +18,5 @@
     }
   ]
 }
+
+export default data;
