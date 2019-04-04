@@ -1,84 +1,76 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
 import data from '../../assets/characters.js';
+import './CharacterListMenu.css';
 
 const styles = theme => ({
   root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing.unit * 2,
   },
 });
 
-const options = data.characters.map((character) => {
-  return character['name'];
-});
-
 class CharacterListMenu extends React.Component {
-  state = {
-    anchorEl: null,
-    selectedIndex: -1,
-  };
 
-  handleClickListItem = event => {
-    console.log("clicked list item")
-    this.setState({ anchorEl: event.currentTarget });
-  };
-  
-  handleMenuItemClick = (event, index) => {
-    console.log("clicked menu item")
-    this.setState({ selectedIndex: index, anchorEl: null });
-    this.props.onChange(event);
-    console.log('state', this.state);
-  };
+  handleMenuChange = event => {
+    console.log('UPDATING SELECTION:', event.target.value);
+    this.props.updateSelection(event.target.value);
+  }
   
   handleClose = () => {
-    console.log("closing item")
-    this.setState({ anchorEl: null });
+    console.log("handling menu closing...")
+    this.props.updateAnchorElement(null);
   };
 
   render() {
-    const { classes } = this.props;
-    const { anchorEl } = this.state;
+    const { classes, selected } = this.props;
 
     return (
-      <div className={classes.root}>
-        <List component="nav">
-          <ListItem
-            button
-            aria-haspopup="true"
-            aria-controls="lock-menu"
-            aria-label="Character"
-            onClick={this.handleClickListItem}
-          >
-            <ListItemText
-              primary="Character"
-              secondary={options[this.state.selectedIndex]}
-            />
-          </ListItem>
-        </List>
-        <Menu
-          id="lock-menu"
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={this.handleClose}
-        >
-          {options.map((option, index) => (
-            <MenuItem
-              key={option}
-              selected={index === this.state.selectedIndex}
-              onClick={event => this.handleMenuItemClick(event, index)}
-            >
-              {option}
-            </MenuItem>
-          ))}
-        </Menu>
+      <div 
+        id="character-list-menu" 
+        className={classes.root}
+      >
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="character-native-helper">
+            Please select
+          </InputLabel>
+          <Select
+            value={ selected }
+            input={
+              <Input 
+                name="character"
+                id="character-native-helper"
+              />
+            }
+            onChange={this.handleMenuChange}
+          > 
+            { data.characters.map((character, index) => (
+                <MenuItem 
+                  value={character['name']}
+                  key={index}
+                >
+                  {character['name']}
+                </MenuItem>
+            ))}
+          </Select>
+          <FormHelperText>
+            Pick your favorite character...
+          </FormHelperText>
+        </FormControl>
       </div>
     );
   }
