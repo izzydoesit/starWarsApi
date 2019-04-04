@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Header from '../Header/Header';
-import MoviesList from '../MoviesList/MoviesList';
+import CharacterContainer from '../../containers/CharacterContainer';
+import MenuContainer from '../../containers/MenuContainer';
+import MoviesListContainer from '../../containers/MoviesListContainer';
 import './App.css';
 
 class App extends Component {
@@ -8,7 +10,9 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <MoviesList />
+        <MenuContainer />
+        <CharacterContainer />
+        <MoviesListContainer />
       </div>
     );
   }
