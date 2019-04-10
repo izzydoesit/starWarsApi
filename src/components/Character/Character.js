@@ -32,9 +32,14 @@ class Character extends Component {
   }
 
   render() {
-    const { profile, selected, isFetching, error } = this.props;
+    const { 
+      profile, 
+      selected, 
+      isFetching, 
+      error, 
+      classes, 
+      className } = this.props;
     const message = selected && error ? error : 'No character selected...'
-    const { classes, children, className, ...other } = this.props;
 
     return(
       <div id="character-wrapper">
@@ -73,7 +78,7 @@ class Character extends Component {
                     color="primary" 
                     href={profile.url} 
                     target="_blank"
-                    className={classNames(classes.root, className)} {...other}
+                    className={classNames(classes.root, className)}
                   >
                     Go To { profile.name }
                     </Button>
