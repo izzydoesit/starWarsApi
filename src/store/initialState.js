@@ -1,8 +1,7 @@
 export default {
   menu: {
     selected: '',
-    anchorEl: null,
-    selectedIndex: 0,
+    anchorEl: null
   },
   character: {
     url: '',
