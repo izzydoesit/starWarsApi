@@ -40,7 +40,6 @@ class CharacterListMenu extends React.Component {
     return (
       <div 
         id="character-list" 
-        className={classes.root}
       >
         <div id="character-list-menu">
           <FormControl className={classes.formControl}>
