@@ -27,12 +27,10 @@ const styles = theme => ({
 class CharacterListMenu extends React.Component {
 
   handleMenuChange = event => {
-    console.log('UPDATING SELECTION:', event.target.value);
     this.props.updateSelection(event.target.value);
   }
   
   handleClose = () => {
-    console.log("handling menu closing...")
     this.props.updateAnchorElement(null);
   };
 

@@ -9,8 +9,6 @@ import {
 
 export const getMoviesInfo = (filmUrls) => {
 
-  console.log("filmURLS: ", filmUrls)
-
   return dispatch => {
 
     dispatch(requestMovies());
@@ -24,18 +22,13 @@ export const getMoviesInfo = (filmUrls) => {
       
       return axios.get(url)
       .then(response => {
-        console.log('SUCCESS GET MOVIE: ', response)
         dispatch(updateMovieData(response.data))
         return response.data
       })
       .catch(error => {
-        console.log("ERROR GET MOVIE: ", error);
         dispatch(getMovieFailure(error.message))
       })
     })
-    if (promises.length > 0) {
-      console.log('promises set:', promises)
-    }
     
     Promise.all(promises).then(() => {dispatch(getMovieSuccess())})
   }

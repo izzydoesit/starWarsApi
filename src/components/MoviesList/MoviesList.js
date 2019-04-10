@@ -7,7 +7,6 @@ import './MoviesList.css';
 class MoviesList extends Component {
 
   componentWillReceiveProps = (nextProps) => {
-    console.log('receiving next movie props: ', nextProps);
     if (this.props.selected !== nextProps.selected) {
       this.props.updateFetching(true);
     }

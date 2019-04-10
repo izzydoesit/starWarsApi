@@ -26,14 +26,12 @@ const styles = {
 class Character extends Component {
 
   componentWillReceiveProps(nextProps) {
-    console.log('receiving next character props: ', nextProps);
     if (this.props.selected !== nextProps.selected) {
       this.props.updateCharacter(nextProps.selected);
     }
   }
 
   render() {
-    console.log('CHARACTER PROPS: ', this.props);
     const { profile, selected, isFetching, error } = this.props;
     const message = selected && error ? error : 'No character selected...'
     const { classes, children, className, ...other } = this.props;

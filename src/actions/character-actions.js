@@ -34,7 +34,6 @@ export const getCharacterProfile = (characterUrl) => {
 
     axios.get(characterUrl)
     .then(response => {
-      console.log('found profile!', response);
       dispatch(updateProfile(response.data))
       return response.data
     })
@@ -42,7 +41,6 @@ export const getCharacterProfile = (characterUrl) => {
       dispatch(getProfileSuccess());
     })
     .catch(error => {
-      console.log("ERROR getting profile: ", error.response)
       dispatch(getProfileError(error.response.data.detail));
     })
   }
@@ -54,7 +52,6 @@ export const requestProfile = (url) => ({
 })
 
 export const getProfileError = (error) => {
-  console.log('ERROR GET PROFILE: ', error);
   return {
     type: GET_PROFILE_ERROR,
     error
@@ -62,7 +59,6 @@ export const getProfileError = (error) => {
 }
 
 export const getProfileSuccess = (profile) => {
-  console.log('SUCCESS GET PROFILE: ', profile)
   return {
     type: GET_PROFILE_SUCCESS
   }

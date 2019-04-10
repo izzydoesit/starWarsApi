@@ -10,7 +10,6 @@ import {
 export default function moviesReducer(state = initialState.movies, action) {
   switch (action.type) {
     case REQUEST_MOVIES:
-      console.log('MOVIE STATE: ', state)
       return {
         ...state,
         isFetching: true,
