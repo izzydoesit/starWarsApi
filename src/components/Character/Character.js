@@ -5,8 +5,23 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
 import profilePic from '../../assets/imgPlaceholder.jpeg';
 import './Character.css';
+
+const styles = {
+  root: {
+    background: 'black',
+    borderRadius: 10,
+    border: 0,
+    color: 'yellow',
+    height: 48,
+    padding: '0 5%',
+    margin: '0 auto',
+    width: '90%'
+  },
+};
 
 class Character extends Component {
 
@@ -21,6 +36,7 @@ class Character extends Component {
     console.log('CHARACTER PROPS: ', this.props);
     const { profile, selected, isFetching, error } = this.props;
     const message = selected && error ? error : 'No character selected...'
+    const { classes, children, className, ...other } = this.props;
 
     return(
       <div id="character-wrapper">
@@ -44,13 +60,13 @@ class Character extends Component {
                     {profile.name}
                   </Typography>
                   <Typography component="p">
-                    DOB: {profile.birth_year}
+                    <b>DOB: </b>{profile.birth_year}
                   </Typography>
                   <Typography component="p">
-                    HEIGHT: {profile.height}
+                    <b>HEIGHT: </b>{profile.height}
                   </Typography>
                   <Typography component="p">
-                    MASS: {profile.mass}
+                    <b>MASS: </b>{profile.mass}
                   </Typography>
                 </CardContent>
                 <CardActions id="card-button">
@@ -59,6 +75,7 @@ class Character extends Component {
                     color="primary" 
                     href={profile.url} 
                     target="_blank"
+                    className={classNames(classes.root, className)} {...other}
                   >
                     Go To { profile.name }
                     </Button>
@@ -74,4 +91,4 @@ class Character extends Component {
   }
 }
 
-export default Character;
+export default withStyles(styles)(Character);

@@ -3,6 +3,7 @@ import Movie from '../Movie/Movie';
 import Grid from '@material-ui/core/Grid';
 import './MoviesList.css';
 
+
 class MoviesList extends Component {
 
   componentWillReceiveProps = (nextProps) => {
@@ -20,10 +21,11 @@ class MoviesList extends Component {
   render() {
     const { profile, isFetching, movies, error } = this.props;
     const displayTitle = Object.keys(profile).length !== 0 && !error ? "Filmography" : ""
+
     return (
       <div id="movies-list-wrapper">
-        {error ? <p>{error}</p> : null}
         <h2 id="movies-list-title">{displayTitle}</h2>
+        {error ? <p>{error}</p> : null}
         { isFetching ? 
           (
             <h3>Loading...</h3>

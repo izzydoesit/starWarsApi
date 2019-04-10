@@ -5,13 +5,28 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
 import titlePic from '../../assets/starWarsPlaceholder.jpg';
 import Moment from 'react-moment';
 import './Movie.css';
 
+const styles = {
+    root: {
+      background: 'black',
+      borderRadius: 10,
+      border: 0,
+      color: 'yellow',
+      height: 48,
+      padding: '0 5%',
+      margin: '0 auto',
+      width: '90%'
+    },
+  };
 
 const Movie = (props) => {
-    console.log('movie props', props)
+    const { classes, children, className, ...other } = props;
+
     return(
         <div>
             { props.movie ? (
@@ -31,12 +46,13 @@ const Movie = (props) => {
                             </Moment>
                         </Typography>
                     </CardContent>
-                    <CardActions>
+                    <CardActions id="movie-card-button">
                         <Button 
                             size="small" 
                             color="primary" 
                             href={props.movie.url} 
                             target="_blank"
+                            className={classNames(classes.root, className)} {...other}
                         >
                             Go To Movie
                         </Button>
@@ -47,4 +63,4 @@ const Movie = (props) => {
     )
 }
 
-export default Movie;
+export default withStyles(styles)(Movie);
