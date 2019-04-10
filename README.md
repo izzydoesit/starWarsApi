@@ -2,7 +2,7 @@
 
 Ever wanted to find out more info on your favorite Star Wars character? Now you can with this React/Redux app (now with built-in API call and error handling!).
 
-You can check out the live version [here] (https://starwarsfandom.herokuapp.com). 
+You can check out the live version [here](https://starwarsfandom.herokuapp.com). 
 
 ## Objectives
 
