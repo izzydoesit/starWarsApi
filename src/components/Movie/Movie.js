@@ -15,13 +15,18 @@ const styles = {
     root: {
       background: 'black',
       borderRadius: 10,
-      border: 0,
+      border: '1px solid black',
       color: 'yellow',
       height: 48,
       padding: '0 5%',
       margin: '0 auto',
       width: '90%'
     },
+    hoverEle: {
+        '&:hover': {
+          color: 'black'
+        }
+      }
   };
 
 const Movie = (props) => {
@@ -52,7 +57,7 @@ const Movie = (props) => {
                             color="primary" 
                             href={props.movie.url} 
                             target="_blank"
-                            className={classNames(classes.root, className)} {...other}
+                            className={classNames(classes.root, className, classes.hoverEle)} {...other}
                         >
                             Go To Movie
                         </Button>

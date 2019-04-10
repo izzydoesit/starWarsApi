@@ -14,13 +14,18 @@ const styles = {
   root: {
     background: 'black',
     borderRadius: 10,
-    border: 0,
+    border: '1px solid black',
     color: 'yellow',
     height: 48,
     padding: '0 5%',
     margin: '0 auto',
     width: '90%'
   },
+  hoverEle: {
+    '&:hover': {
+      color: 'black'
+    }
+  }
 };
 
 class Character extends Component {
@@ -51,7 +56,7 @@ class Character extends Component {
             
               <Card className="character-card">
                 <CardMedia 
-                  style={{height: 0, paddingTop: '56.25%'}}
+                  style={{height: '80%', paddingTop: '45%'}}
                   image={profilePic}
                   title={profile.name}
                 />
@@ -78,7 +83,7 @@ class Character extends Component {
                     color="primary" 
                     href={profile.url} 
                     target="_blank"
-                    className={classNames(classes.root, className)}
+                    className={classNames(classes.root, className, classes.hoverEle)}
                   >
                     Go To { profile.name }
                     </Button>
