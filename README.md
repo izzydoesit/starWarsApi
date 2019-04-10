@@ -1,5 +1,11 @@
-# starWarsApi
-React app fetches movie information for selected characters
+# Star Wars Fandom
+
+Ever wanted to find out more info on your favorite Star Wars character? Now you can with this React/Redux app (now with built-in API call and error handling!).
+
+![topPage](https://github.com/izzydoesit/starWarsApi/blob/master/starWarsFandom1.png)
+![bottomPage](https://github.com/izzydoesit/starWarsApi/blob/master/starWarsFandom2.png)
+
+You can check out the live version [here](https://starwarsfandom.herokuapp.com). 
 
 ## Objectives
 
@@ -13,8 +19,63 @@ React app fetches movie information for selected characters
 - Separate concerns where applicable
 - Make it pretty! You're encouraged to use Bootstrap, Bulma, Material Components, or any other css framework
 
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+```
+yarn 1.15.2 (or npm)
+create-react-app 2.1.8
+```
+
+### Installing
+From the command terminal, clone the repository to your local directory...
+```
+$ git clone https://www.gihub.com/izzydoesit/starWarsApi.git
+$ cd starWarsApi
+```
+
+Then run yarn (or npm equivalent) commands to install all dependencies and start the server.  
+
+```
+$ yarn install
+$ yarn start
+```
+
+## Deployment
+
+You must have Heroku CLI installed and be logged in to Heroku in order to deploy live via Heroku servers
+(Please see the [documentation](https://devcenter.heroku.com) to get set up with Heroku)
+
+Then, after installation and login to Heroku CLI, via the command line...
+```
+heroku create -b https://github.com/mars/create-react-app-buildpack.git
+git add .
+git commit -m "react-create-app on Heroku"
+git push heroku master
+heroku open
+```
+## Built With
+
+* [React](https://facebook.github.io/react) - Front end JavaScript framework used
+* [Material UI](https://material-ui.com/) - UI library for React that implements Google's Material Design
+* [Redux](https://www.reduxjs.org) - Predictable state container used in front end application
+* [Redux Thunk](https://github.com/reduxjs/redux-thunk) - Redux middleware to make asychronous actions
+* [Axios](https://github.com/axios/axios) - Promise-based HTTP client
+
+## Author
+
+* **Israel Matos** - [Github](https://github.com/izzydoesit)
+
+## License
+
+This project is licensed under the Apache 2.0 License - see the [LICENSE.md](LICENSE.md) file for details
+
 
 ## Available Scripts
 
