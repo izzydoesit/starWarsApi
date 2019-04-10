@@ -41,36 +41,38 @@ class CharacterListMenu extends React.Component {
 
     return (
       <div 
-        id="character-list-menu" 
+        id="character-list" 
         className={classes.root}
       >
-        <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="character-native-helper">
-            Please select
-          </InputLabel>
-          <Select
-            value={ selected }
-            input={
-              <Input 
-                name="character"
-                id="character-native-helper"
-              />
-            }
-            onChange={this.handleMenuChange}
-          > 
-            { data.characters.map((character, index) => (
+        <div id="character-list-menu">
+          <FormControl className={classes.formControl}>
+            <InputLabel htmlFor="character-native-helper">
+              Please select
+            </InputLabel>
+            <Select
+              value={ selected }
+              input={
+                <Input 
+                  name="character"
+                  id="character-native-helper"
+                />
+              }
+              onChange={this.handleMenuChange}
+            > 
+              { data.characters.map((character, index) => (
                 <MenuItem 
                   value={character['name']}
                   key={index}
                 >
                   {character['name']}
                 </MenuItem>
-            ))}
-          </Select>
-          <FormHelperText>
-            Pick your favorite character...
-          </FormHelperText>
-        </FormControl>
+              ))}
+            </Select>
+            <FormHelperText>
+              Pick your favorite character...
+            </FormHelperText>
+          </FormControl>
+        </div>
       </div>
     );
   }
