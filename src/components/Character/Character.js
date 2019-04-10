@@ -19,41 +19,56 @@ class Character extends Component {
 
   render() {
     console.log('CHARACTER PROPS: ', this.props);
-    const { profile, selected } = this.props;
-    
+    const { profile, selected, isFetching, error } = this.props;
+    const message = selected && error ? error : 'No character selected...'
+
     return(
-      <div id="character">
-        { profile ? 
-          <Card >
-            <CardMedia 
-              style={{height: 0, paddingTop: '56.25%'}}
-              image={profilePic}
-              title={profile.name}
-            />
-            <CardContent>
-              <Typography gutterBottom 
-                variant="headline" 
-                component="h2"
-              >
-                {profile.name}
-              </Typography>
-              <Typography component="p">
-                {profile.birth_year}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button 
-                size="small" 
-                color="primary" 
-                href={profile.url} 
-                target="_blank"
-              >
-                Go To { selected }
-                </Button>
-            </CardActions>
-          </Card>
-        : "No image selected"
-        }
+      <div id="character-wrapper">
+        { isFetching ? (
+          <p className="character-display-msg">Loading...</p>
+        ) : (
+          <div id="character">
+            { Object.keys(profile).length !== 0 ? (
+            
+              <Card className="character-card">
+                <CardMedia 
+                  style={{height: 0, paddingTop: '56.25%'}}
+                  image={profilePic}
+                  title={profile.name}
+                />
+                <CardContent>
+                  <Typography gutterBottom 
+                    variant="headline" 
+                    component="h2"
+                  >
+                    {profile.name}
+                  </Typography>
+                  <Typography component="p">
+                    DOB: {profile.birth_year}
+                  </Typography>
+                  <Typography component="p">
+                    HEIGHT: {profile.height}
+                  </Typography>
+                  <Typography component="p">
+                    MASS: {profile.mass}
+                  </Typography>
+                </CardContent>
+                <CardActions id="card-button">
+                  <Button
+                    size="small" 
+                    color="primary" 
+                    href={profile.url} 
+                    target="_blank"
+                  >
+                    Go To { profile.name }
+                    </Button>
+                </CardActions>
+              </Card>
+            ) : (
+              <p className="character-display-message">{message}</p>
+            )}
+          </div>
+        )}
       </div>
     )
   }

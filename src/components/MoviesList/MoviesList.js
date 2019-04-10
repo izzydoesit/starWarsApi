@@ -7,32 +7,40 @@ class MoviesList extends Component {
 
   componentWillReceiveProps = (nextProps) => {
     console.log('receiving next movie props: ', nextProps);
+    if (this.props.selected !== nextProps.selected) {
+      this.props.updateFetching(true);
+    }
     if (this.props.profile !== nextProps.profile) {
       this.props.getMoviesInfo(nextProps.profile.films);
     }
   }
 
+
+
   render() {
-    const { isLoading, movies, error } = this.props;
-
+    const { profile, isFetching, movies, error } = this.props;
+    const displayTitle = Object.keys(profile).length !== 0 && !error ? "Filmography" : ""
     return (
-      <div>
-        {error ? <p>{error.message}</p> : null}
-
-        { !isLoading ? (
-          <div>
-             <p> I'm gonna show you some movies! </p>
-            <Grid container spacing={24} style={{padding: 24}}>
-              { movies.map(currentMovie => (
-                <Grid item xs={12} sm={6} lg={4} xl={3}>
-                  <Movie movie={currentMovie} />
-                </Grid>
-              ))}
-            </Grid>
-          </div>
-        ) : (
-          <h3>Loading...</h3>
-        )}
+      <div id="movies-list-wrapper">
+        {error ? <p>{error}</p> : null}
+        <h2 id="movies-list-title">{displayTitle}</h2>
+        { isFetching ? 
+          (
+            <h3>Loading...</h3>
+          ) : (
+            <div id="movies-list">
+              <Grid container spacing={24} style={{padding: 24}}>
+                { movies.map((currentMovie, index) => (
+                  <Grid item xs={12} sm={6} lg={4} xl={3}
+                    key={index}
+                  >
+                    <Movie movie={currentMovie} />
+                  </Grid>
+                ))}
+              </Grid>
+            </div>
+          )
+        }
       </div>
     )
   }
