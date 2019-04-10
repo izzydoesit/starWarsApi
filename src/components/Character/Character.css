@@ -1,5 +1,23 @@
+#character-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 25em;
+}
+
 #character {
+  margin: 5%;
+  width: 60%;
+}
+
+#card-button {
   display: flex;
   flex-direction: row;
-  max-width: 49%;
+  justify-content: center;
+}
+
+#empty-profile {
+  height: 10%;
+  margin: 0 auto;
 }

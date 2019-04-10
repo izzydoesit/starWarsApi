@@ -1,3 +1,14 @@
-#character-list-menu {
-  max-width: 50%;
+#character-list {
+  width: 50%;
+  height: 25em;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
+
+#character-list-menu {
+  justify-content: center;
+  margin: 0 auto;
+}
+
