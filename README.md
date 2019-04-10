@@ -1,6 +1,6 @@
 # Star Wars Fandom
 
-Ever wanted to find out more info on your favorite Star Wars character? Now you can with this React/Redux app (now with built-in API call and error handling!) using the [Star Wars API](https://swapi.co/). You can check out the live version [here](https://starwarsfandom.herokuapp.com). 
+Ever wanted to find out more info on your favorite Star Wars character? Now you can with this React/Redux app (now with built-in API call and error handling!) using the [Star Wars API](https://swapi.co/). Check out the live version [here](https://starwarsfandom.herokuapp.com). 
 
 ![topPage](https://github.com/izzydoesit/starWarsApi/blob/master/starWarsFandom1.png)
 ![bottomPage](https://github.com/izzydoesit/starWarsApi/blob/master/starWarsFandom2.png)
