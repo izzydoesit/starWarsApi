@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import initialState from '../store/initialState';
 import Character from '../components/Character/Character';
 import { 
-  updateCharacter, 
-  getCharacterUrl,
-  getCharacterProfile } from '../actions/character-actions.js';
+  updateCharacter } from '../actions/character-actions.js';
 
 const mapStateToProps = (state = initialState) => {
   return {
@@ -19,9 +17,7 @@ const mapStateToProps = (state = initialState) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    updateCharacter,
-    getCharacterUrl,
-    getCharacterProfile
+    updateCharacter
   }, dispatch)
 };
 
