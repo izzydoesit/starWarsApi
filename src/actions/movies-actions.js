@@ -1,31 +1,58 @@
 import axios from 'axios';
 import {
+  REQUEST_MOVIES,
   GET_MOVIE_FAILURE,
   GET_MOVIE_SUCCESS,
-  UPDATE_MOVIES,
-  UPDATE_LOADING
+  UPDATE_FETCHING,
+  UPDATE_MOVIE_DATA,
 } from '../constants';
 
 export const getMoviesInfo = (filmUrls) => {
-  console.log("FILMS to get: ", filmUrls)
-  let movies = filmUrls.forEach((url) => {
-    axios.get(url)
-    .then(response => response.data)
-    .catch(error => console.log("Error fetching movie", error))
-  })
-  if (movies.length > 0) {
-    console.log('MOVIES FOUND:', movies)
+
+  console.log("filmURLS: ", filmUrls)
+
+  return dispatch => {
+
+    dispatch(requestMovies());
+
+    if (!filmUrls) {
+      dispatch(getMovieFailure('No films found!'));
+      return;
+    }
+
+    let promises = filmUrls.map((url) => {
+      
+      return axios.get(url)
+      .then(response => {
+        console.log('SUCCESS GET MOVIE: ', response)
+        dispatch(updateMovieData(response.data))
+        return response.data
+      })
+      .catch(error => {
+        console.log("ERROR GET MOVIE: ", error);
+        dispatch(getMovieFailure(error.message))
+      })
+    })
+    if (promises.length > 0) {
+      console.log('promises set:', promises)
+    }
+    
+    Promise.all(promises).then(() => {dispatch(getMovieSuccess())})
   }
 }
 
-export const updateMovies = (movies) => ({
-  type: UPDATE_MOVIES,
-  movies
+export const updateMovieData = (movie) => ({
+  type: UPDATE_MOVIE_DATA,
+  movie
 });
 
-export const getMovieSuccess = (movie) => ({
+export const updateFetching = (status) => ({
+  type: UPDATE_FETCHING,
+  isFetching: status
+})
+
+export const getMovieSuccess = () => ({
   type: GET_MOVIE_SUCCESS,
-  movie
 })
 
 export const getMovieFailure = (error) => ({
@@ -33,8 +60,6 @@ export const getMovieFailure = (error) => ({
   error
 })
 
-export const updateLoading = (loading) => ({
-  type: UPDATE_LOADING,
-  loading
+export const requestMovies = () => ({
+  type: REQUEST_MOVIES
 })
-
